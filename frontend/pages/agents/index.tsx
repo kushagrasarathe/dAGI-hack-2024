@@ -1,4 +1,5 @@
 import CategoryBadge from "@/components/category-badge";
+import RatingBadge from "@/components/rating-badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -51,7 +52,7 @@ const mockAgents: Array<AgentCardProps> = [
   {
     id: "1",
     name: "John Wick",
-    rating: "4.5",
+    rating: "1.5",
     desc: "The agent behaves just like John Wick whenever asked to do something",
     categories: ["action", "crime", "thriller"],
   },
@@ -80,32 +81,38 @@ const mockAgents: Array<AgentCardProps> = [
 
 export default function Agents() {
   return (
-    <div className="grid grid-cols-12 *:col-span-6 gap-4">
-      {mockAgents.map((agent, idx) => (
-        <div key={idx} className="w-ful">
-          <AgentCard
-            id={agent.id}
-            name={agent.name}
-            rating={agent.rating}
-            desc={agent.desc}
-            categories={agent.categories}
-          />
-        </div>
-      ))}
+    <div className="space-y-6 text-2xl font-semibold">
+      <div>Explore</div>
+      <div className="grid grid-cols-12 *:col-span-12 md:*:col-span-6 gap-6">
+        {mockAgents.map((agent, idx) => (
+          <div key={idx} className="w-ful">
+            <AgentCard
+              id={agent.id}
+              name={agent.name}
+              rating={agent.rating}
+              desc={agent.desc}
+              categories={agent.categories}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 const AgentCard = ({ name, id, rating, desc, categories }: AgentCardProps) => {
   return (
-    <Card className="flex flex-col w-full h-full">
+    <Card className="flex flex-col w-full h-full hover:shadow-inner transition duration-75 hover:bg-gray-50 delay-100">
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className="flex gap-2 justify-between">
+          <div>{name}</div>
+          <RatingBadge rating={rating} />
+        </CardTitle>
         <CardDescription className="leading-6 line-clamp-4">
           {desc}
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="mt-auto">
         <div className="space-y-1">
           <div>Categories: </div>
           <div className="flex flex-wrap gap-2">
@@ -115,7 +122,7 @@ const AgentCard = ({ name, id, rating, desc, categories }: AgentCardProps) => {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="mt-auto">
+      <CardFooter>
         <Link
           href={`/agent/${id}`}
           className={cn(buttonVariants({ variant: "default" }), "w-full")}

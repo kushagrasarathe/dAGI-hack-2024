@@ -31,9 +31,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <div className={`${font.className} md:max-w-7xl mx-auto`}>
+          <div className={`${font.className}`}>
             <Header />
-            <div className="py-6">
+            <div className="md:max-w-7xl mx-auto pt-28 pb-10">
               <Component {...pageProps} />{" "}
             </div>
           </div>
