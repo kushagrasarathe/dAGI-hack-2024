@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -26,6 +25,7 @@ import {
 
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import BuySubscription from "./buy-subscription";
 import FeedbackReviews from "./feedback-reviews";
 
 const categories = ["action", "crime", "thriller"];
@@ -108,7 +108,8 @@ export default function Agent() {
               </Accordion>
             </div>
 
-            <Button className="w-full">Use Agent</Button>
+            <BuySubscription />
+            {/* <Button className="w-full">Use Agent</Button> */}
           </div>
           <div className="space-y-2">
             <div className="flex items-center gap-2 justify-between">
@@ -187,14 +188,14 @@ export default function Agent() {
               </div>
             </div>
           </div>
-          <div className="col-span-8 col-start-5 border rounded-lg">
-            <PreviousRounds />
+          <div className="col-span-8 col-start-5 space-y-4">
+            <div className="font-semibold">Previous Rounds</div>
+            <div className="border rounded-lg space-y-4">
+              <PreviousRounds />
+            </div>
           </div>
         </div>
       </div>
-      {/* <div className="col-span-12 border rounded-lg ">
-        <PreviousRounds />
-      </div> */}
     </div>
   );
 }
