@@ -1,0 +1,33 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ChainAgents
+    network: sepolia
+    source:
+      address: "0xD67c78B4DFc5b9d995a6B477A2B6675D0551DA7c"
+      abi: ChainAgents
+      startBlock: 6261955
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Creator
+        - User
+        - Agent
+        - SubscriptionEntity
+      abis:
+        - name: ChainAgents
+          file: ./abis/ChainAgents.json
+      eventHandlers:
+        - event: agentRegistered(string,string,uint32,address,address,uint256,uint256,string,string,bool)
+          handler: handleagentRegistered
+        - event: agentSubscriptionPurchased(uint32,uint256,string,address,address)
+          handler: handleagentSubscriptionPurchased
+        - event: agentVersionRegistered(uint32,string,uint32,address,string)
+          handler: handleagentVersionRegistered
+      file: ./src/chain-agents.ts
