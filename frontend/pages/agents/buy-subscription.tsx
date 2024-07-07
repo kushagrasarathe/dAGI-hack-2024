@@ -8,8 +8,15 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { formatEther } from "ethers";
 
-export default function BuySubscription() {
+interface BuySubscriptionProps {
+  agentId: string;
+  price: bigint;
+  subscribe: () => void;
+}
+
+export default function BuySubscription(props: BuySubscriptionProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -24,7 +31,9 @@ export default function BuySubscription() {
             <div className="flex gap-2 items-center justify-between">
               <div className="space-y-1">
                 <div className="text-sm">Price</div>
-                <div>0.05 ETH</div>
+                <div>
+                  {props.price ? formatEther(props.price).toString() : 0} ETH
+                </div>
               </div>
               <div className="space-y-1">
                 <div className="text-sm">Duration</div>
@@ -32,7 +41,9 @@ export default function BuySubscription() {
               </div>
             </div>
             <Separator />
-            <Button className="w-full">Subscribe</Button>
+            <Button onClick={() => props.subscribe()} className="w-full">
+              Subscribe
+            </Button>
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
