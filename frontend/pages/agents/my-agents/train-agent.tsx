@@ -2,9 +2,15 @@ import { Input } from "@/components/ui/input";
 
 interface TrainAgentProps {
   sendMessage: (message: string) => void;
+  threadID: string;
+  assistantID: string;
 }
 
-const TrainAgent = ({ sendMessage }: TrainAgentProps) => {
+const TrainAgent = ({
+  sendMessage,
+  threadID,
+  assistantID,
+}: TrainAgentProps) => {
   return (
     <div className="border rounded-lg h-[82vh]">
       <div className="w-full pt-4 px-4 border-b">

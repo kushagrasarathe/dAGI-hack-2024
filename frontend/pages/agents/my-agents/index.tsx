@@ -409,52 +409,31 @@ export default function Index() {
           <div className="font-semibold text-lg tracking-tight p-4 border-b">
             Your Agents
           </div>
-
-          {/* {subscriptionsData &&
-                    subscriptionsData.map((subscription: any) => {
-                      return (
-                        <li>
-                          <button
-                            type="button"
-                            className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-orange-200"
-                            onClick={() => {
-                              setAssistantID(subscription.assistantId);
-
-                              setThreadID(subscription.threadID);
-
-                              getThread(
-                                subscription.threadID,
-                                subscription.assistantId
-                              );
-                            }}
-                          >
-                            <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
-                              {subscription.agentName}
-                            </span>
-                          </button>
-                        </li>
-                      );
-                    })} */}
           <div className=" max-h-[74vh] overflow-auto">
             {subscriptionsData &&
               subscriptionsData.map((agent: any, idx) => (
-                <div
+                <button
                   key={idx}
                   className="space-y-1 border-b px-4 py-2 hover:bg-gray-100 cursor-pointer transition delay-100"
+                  onClick={() => {
+                    setAssistantID(agent.assistantId);
+
+                    setThreadID(agent.threadID);
+
+                    getThread(agent.threadID, agent.assistantId);
+                  }}
                 >
                   <div>{agent.agentName}</div>
-                  {/* <div className="text-xs line-clamp-1 text-gray-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Optio sit incidunt reiciendis totam ducimus iusto recusandae
-                    ratione, beatae perferendis fuga provident impedit, earum
-                    eaque aliquam ad nesciunt. Ullam, neque quia.
-                  </div> */}
-                </div>
+                </button>
               ))}
           </div>
         </div>
         <div className="col-span-9 col-start-4 space-y-4">
-          <TrainAgent sendMessage={sendMessage} />
+          <TrainAgent
+            sendMessage={sendMessage}
+            threadID={threadID as string}
+            assistantID={assistantID as string}
+          />
         </div>
       </div>
     </div>
