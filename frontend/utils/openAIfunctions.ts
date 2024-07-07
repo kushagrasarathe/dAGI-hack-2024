@@ -224,7 +224,7 @@ export const pollRun = async (
   } catch (error) {}
 };
 
-export const useThread = async (
+export const UseThread = async (
   thread: OpenAI.Beta.Threads.Thread,
   messageContent: string,
   assistant: OpenAI.Beta.Assistants.Assistant,
