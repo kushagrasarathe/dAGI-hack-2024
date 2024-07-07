@@ -11,7 +11,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const APIURL = `https://api.studio.thegraph.com/query/52650/chainagents/version/latest`;
 
-const UNLOCK_APIURL = `https://api.studio.thegraph.com/proxy/65299/unlock-protocol-sepolia/version/latest`;
+const UNLOCK_APIURL = `https://api.studio.thegraph.com/proxy/65299/unlock-protocol-base-sepolia/version/latest`;
 
 const client = new ApolloClient({
   uri: APIURL,

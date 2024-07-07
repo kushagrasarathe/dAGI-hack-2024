@@ -169,7 +169,7 @@ export function AccountForm() {
       });
       console.log(transaction);
       setIsCreatingAgent(false);
-      router.push(`/agents/${getAgentID(_assistantID)}`);
+      router.push(`/agents`);
     } catch (error) {
       console.log(error);
     }

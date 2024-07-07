@@ -265,6 +265,8 @@ export default function Agent() {
         hash: hash,
       });
       console.log(transaction);
+
+      router.push(`/agents/my-agents`);
     } catch (error) {
       console.log(error);
     }
