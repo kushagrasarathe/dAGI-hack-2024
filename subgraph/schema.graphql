@@ -1,49 +1,48 @@
-type OwnershipTransferred @entity(immutable: true) {
+## Creator
+type Creator @entity {
   id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  address: Bytes!
+  agentsCreated: [Agent!] @derivedFrom(field: "creator")
+  totalRevenue: BigInt!
 }
+# Extra maybe Rounds won , total rev
 
-type agentRegistered @entity(immutable: true) {
+## User
+type User @entity {
   id: Bytes!
-  agentName: String! # string
-  baseTokenURI: String! # string
-  agentID: BigInt! # uint32
-  creator: Bytes! # address
-  unlockSubscriptionContract: Bytes! # address
+  address: Bytes!
+  agentsSubscribedTo: [SubscriptionEntity!] @derivedFrom(field: "buyer")
+}
+# Extra maybe Rounds won
+
+## Agent
+type Agent @entity {
+  id: String!
+  assistantId: String!
+  agentName: String!
+  agentID: BigInt! # uint16
+  creator: Creator! # address
+  unlockSubAddress: Bytes! # address
   keyPrice: BigInt! # uint256
   basisPoint: BigInt! # uint256
-  rewardCategory: String! # string
-  actualCategory: String! # string
+  agentCategory: String! # string
   isOpenForContributions: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  isImprovedVersion: Boolean!
+  AgentVersions: [Agent!] @derivedFrom(field: "parentAgent")
+  versionNo: String!
+  parentAgent: Agent
+  metadataCID: String
+  totalRevenue: BigInt!
 }
 
-type agentSubscriptionPurchased @entity(immutable: true) {
-  id: Bytes!
-  agentID: BigInt! # uint32
-  tokenId: BigInt! # uint256
+## Subscription
+type SubscriptionEntity @entity {
+  id: String!
+  agent: Agent!
+  agentCreator: Creator!
+  buyer: User!
   threadID: String! # string
-  agentCreator: Bytes! # address
-  subscriber: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type agentVersionRegistered @entity(immutable: true) {
-  id: Bytes!
-  agentID: BigInt! # uint32
-  agentVersionName: String! # string
-  agentVersionID: BigInt! # uint32
-  creator: Bytes! # address
-  agentMetadataCID: String! # string
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+  tokenId: BigInt! # uint256
+  createdAt: BigInt!
+  expiresAt: BigInt!
 }

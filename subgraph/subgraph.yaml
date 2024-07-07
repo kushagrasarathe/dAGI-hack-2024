@@ -10,22 +10,20 @@ dataSources:
     source:
       address: "0xD67c78B4DFc5b9d995a6B477A2B6675D0551DA7c"
       abi: ChainAgents
-      startBlock: 0
+      startBlock: 6261955
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - OwnershipTransferred
-        - agentRegistered
-        - agentSubscriptionPurchased
-        - agentVersionRegistered
+        - Creator
+        - User
+        - Agent
+        - SubscriptionEntity
       abis:
         - name: ChainAgents
           file: ./abis/ChainAgents.json
       eventHandlers:
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: agentRegistered(string,string,uint32,address,address,uint256,uint256,string,string,bool)
           handler: handleagentRegistered
         - event: agentSubscriptionPurchased(uint32,uint256,string,address,address)
