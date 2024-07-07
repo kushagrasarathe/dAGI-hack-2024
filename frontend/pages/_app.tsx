@@ -6,21 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { Cairo as Font } from "next/font/google";
 import { WagmiProvider } from "wagmi";
-import {
-  arbitrum,
-  base,
-  holesky,
-  mainnet,
-  optimism,
-  polygon,
-} from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 
 const font = Font({ subsets: ["latin"] });
 
 const config = getDefaultConfig({
   appName: "My RainbowKit App",
   projectId: "YOUR_PROJECT_ID",
-  chains: [mainnet, polygon, optimism, arbitrum, base, holesky],
+  chains: [sepolia],
   ssr: true,
 });
 
