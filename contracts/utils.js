@@ -35,7 +35,7 @@ function getTopKAgents(agentsIDs) {
 }
 
 // Base Sepolia
-const _unlockContract = "0x36b34e10295cCE69B652eEB5a8046041074515Da";
+const _unlockContract = "0x259813B665C8f6074391028ef782e27B65840d89";
 
 const codeStringT = `
   const apiResponse = await Functions.makeHttpRequest({
