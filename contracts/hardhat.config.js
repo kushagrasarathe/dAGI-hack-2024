@@ -17,12 +17,17 @@ module.exports = {
     },
   },
 
-  defaultNetwork: "sepolia",
+  defaultNetwork: "base-sepolia",
 
   networks: {
     sepolia: {
       chainId: 11155111,
       url: "https://rpc2.sepolia.org",
+      accounts: [PRIVATE_KEY],
+    },
+    "base-sepolia": {
+      chainId: 84532,
+      url: "https://sepolia.base.org	",
       accounts: [PRIVATE_KEY],
     },
   },
