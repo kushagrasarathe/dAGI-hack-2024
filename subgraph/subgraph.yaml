@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: ChainAgents
-    network: sepolia
+    network: base-sepolia
     source:
-      address: "0xD67c78B4DFc5b9d995a6B477A2B6675D0551DA7c"
+      address: "0x6359C5f6e13FB437eDA724015b48c3C42e2D31b5"
       abi: ChainAgents
-      startBlock: 6261955
+      startBlock: 12291169
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
