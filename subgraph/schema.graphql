@@ -1,0 +1,49 @@
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type agentRegistered @entity(immutable: true) {
+  id: Bytes!
+  agentName: String! # string
+  baseTokenURI: String! # string
+  agentID: BigInt! # uint32
+  creator: Bytes! # address
+  unlockSubscriptionContract: Bytes! # address
+  keyPrice: BigInt! # uint256
+  basisPoint: BigInt! # uint256
+  rewardCategory: String! # string
+  actualCategory: String! # string
+  isOpenForContributions: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type agentSubscriptionPurchased @entity(immutable: true) {
+  id: Bytes!
+  agentID: BigInt! # uint32
+  tokenId: BigInt! # uint256
+  threadID: String! # string
+  agentCreator: Bytes! # address
+  subscriber: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type agentVersionRegistered @entity(immutable: true) {
+  id: Bytes!
+  agentID: BigInt! # uint32
+  agentVersionName: String! # string
+  agentVersionID: BigInt! # uint32
+  creator: Bytes! # address
+  agentMetadataCID: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

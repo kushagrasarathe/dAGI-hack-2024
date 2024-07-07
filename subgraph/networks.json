@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "ChainAgents": {
+      "address": "0xD67c78B4DFc5b9d995a6B477A2B6675D0551DA7c",
+      "startBlock": 0
+    }
+  }
+}
