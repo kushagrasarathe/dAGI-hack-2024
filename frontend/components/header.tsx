@@ -12,6 +12,9 @@ export default function Header() {
         <div className="flex items-center justify-normal gap-3">
           <Link href={"/agents"}>Explore</Link>
         </div>
+        <div className="flex items-center justify-normal gap-3">
+          <Link href={"/agents/my-agents"}>My Agents</Link>
+        </div>
       </div>
       <div className="flex gap-4">
         <CreateAgent />

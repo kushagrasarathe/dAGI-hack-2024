@@ -124,7 +124,7 @@ const AgentCard = ({ name, id, rating, desc, categories }: AgentCardProps) => {
       </CardContent>
       <CardFooter>
         <Link
-          href={`/agent/${id}`}
+          href={`/agents/${id}`}
           className={cn(buttonVariants({ variant: "default" }), "w-full")}
         >
           Try

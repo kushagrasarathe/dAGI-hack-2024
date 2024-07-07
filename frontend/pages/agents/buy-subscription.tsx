@@ -13,7 +13,9 @@ export default function BuySubscription() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full">Buy Subscription</Button>
+        <Button className="w-full shadow-inner" variant={"secondary"}>
+          Buy Subscription
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

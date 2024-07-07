@@ -1,12 +1,7 @@
 import CategoryBadge from "@/components/category-badge";
 import CopyToClipboard from "@/components/copy-to-clipboard";
 import RatingBadge from "@/components/rating-badge";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -14,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -22,11 +18,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { useState } from "react";
-import BuySubscription from "./buy-subscription";
-import FeedbackReviews from "./feedback-reviews";
+import { genConfig } from "react-nice-avatar";
+import BuySubscription from "../buy-subscription";
+import FeedbackReviews from "../feedback-reviews";
 
 const categories = ["action", "crime", "thriller"];
 
@@ -36,15 +34,21 @@ export default function Agent() {
   const handleRatingChange = (newRating: number) => {
     setRating(newRating);
   };
+
+  // const name = "John Wick";
+  // const config = genConfig(name);
+  const config = genConfig();
+
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-12 gap-6 relative">
         <div className="col-span-4 h-fit sticky top-28 space-y-5">
-          <div className="space-y-4 border rounded-lg p-4">
+          <div className="space-y-4 border rounded-lg p-4 shadow-[0px_0px_20px_0px_#edf2f7]">
             <div className="flex gap-2 justify-between">
-              <div className="text-xl font-semibold">John Wick</div>
+              <div className="text-2xl font-semibold">John Wick</div>
               <RatingBadge rating={"5"} />
             </div>
+
             <div className="space-y-2">
               <div className="text-sm">Categories: </div>
               <div className="flex flex-wrap gap-2">
@@ -74,77 +78,43 @@ export default function Agent() {
               </Select>
             </div>
 
-            <div className="w-full">
-              <Accordion type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-sm text-gray-500">
-                    More Details:
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="space-y-4">
-                      <div className="flex gap-2 items-center justify-between">
-                        <div className="space-y-1">
-                          <div className="text-sm">Price</div>
-                          <div>0.05 ETH</div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="text-sm">Duration</div>
-                          <div>1 Month</div>
-                        </div>
-                      </div>
-                      <div className="flex gap-2 items-center justify-between">
-                        <div className="space-y-1">
-                          <div className="text-sm">Basis Point: </div>
-                          <div>10 %</div>
-                        </div>
-                        <div className="space-y-1">
-                          <div className="text-sm">Open to Contributors</div>
-                          <div className="text-right">No</div>
-                        </div>
-                      </div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-
+            <Link
+              href={`/agents/${23}/contribute`}
+              className={cn(buttonVariants({ variant: "default" }), "w-full")}
+            >
+              Contribute
+            </Link>
             <BuySubscription />
-            {/* <Button className="w-full">Use Agent</Button> */}
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 justify-between">
-              <div className="font-semibold">Post Review</div>
-              <FeedbackReviews />
-            </div>
-            <div className="space-y-4 border rounded-lg p-4">
-              <div className="space-y-2">
-                <div>Rate Agent</div>
-                <div className="flex items-center gap-2">
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <button
-                      key={value}
-                      onClick={() => handleRatingChange(value)}
-                      className={`text-xl focus:outline-none ${
-                        value <= rating ? "text-yellow-500" : "text-gray-300"
-                      }`}
-                    >
-                      {value <= rating ? "★" : "☆"}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-2 ">
-                <span>Feedback</span>
-                <Textarea
-                  cols={4}
-                  placeholder="e.g: lorem ipsum dolor sit amet...."
-                />
-              </div>
-            </div>
           </div>
         </div>
         <div className="space-y-5 col-span-8 ">
-          <div className="border rounded-lg p-4 space-y-6 h-fit">
+          <div className="w-full col-span-8 col-start-5">
+            <div className="border rounded-lg p-4 space-y-6 h-fit shadow-[0px_0px_20px_0px_#edf2f7]">
+              <div className="flex gap-2 items-center justify-between">
+                <div className="space-y-1">
+                  <div className="text-sm">Price</div>
+                  <div className="text-lg font-semibold">0.05 ETH</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-sm">Duration</div>
+                  <div className="text-lg font-semibold">1 Month</div>
+                </div>
+              </div>
+              <Separator />
+              <div className="flex gap-2 items-center justify-between">
+                <div className="space-y-1">
+                  <div className="text-sm">Basis Point: </div>
+                  <div className="text-lg font-semibold">10 %</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-sm">Open to Contributors</div>
+                  <div className="text-lg font-semibold text-right">No</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border rounded-lg p-4 space-y-6 h-fit shadow-[0px_0px_20px_0px_#edf2f7]">
             <div className="space-y-2">
               <div className="font-semibold text-lg">Description</div>
               <div className="text-sm leading-6">
@@ -188,10 +158,37 @@ export default function Agent() {
               </div>
             </div>
           </div>
-          <div className="col-span-8 col-start-5 space-y-4">
-            <div className="font-semibold">Previous Rounds</div>
-            <div className="border rounded-lg space-y-4">
-              <PreviousRounds />
+
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 justify-between">
+              <div className="font-semibold">Post Review</div>
+              <FeedbackReviews />
+            </div>
+            <div className="space-y-4 border rounded-lg p-4 shadow-[0px_0px_20px_0px_#edf2f7]">
+              <div className="space-y-2">
+                <div>Rate Agent</div>
+                <div className="flex items-center gap-2">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      onClick={() => handleRatingChange(value)}
+                      className={`text-xl focus:outline-none ${
+                        value <= rating ? "text-yellow-500" : "text-gray-300"
+                      }`}
+                    >
+                      {value <= rating ? "★" : "☆"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-2 ">
+                <span>Feedback</span>
+                <Textarea
+                  cols={4}
+                  placeholder="e.g: lorem ipsum dolor sit amet...."
+                />
+              </div>
+              <Button className="w-full mt-2">Submit review</Button>
             </div>
           </div>
         </div>
